@@ -1,0 +1,12 @@
+<p>list-fournisseur-component works!</p>
+
+<fieldset (dblclick)="delete(fournisseur)"  *ngFor="let fournisseur of list" [hidden]=" fournisseur.idFournisseur > 100 " [style.background-color]="getColor(fournisseur)" >
+    <div class="encadrer-un-contenu" >
+    <li>IdFournisseur : {{fournisseur.idFournisseur}}</li>
+   <li [style.font-weight]="getSize(fournisseur)">Code : {{fournisseur.code}}</li> 
+   
+   <li> Libelle : {{fournisseur.libelle}}</li>
+    </div>
+    <br>
+
+</fieldset>
