@@ -1,0 +1,92 @@
+
+    <form #FAddProduitComplet="ngForm" class="w-50 mx-auto">
+     <form #FAddProduit="ngForm">  
+        <h1>Add Product </h1>   
+    <div>
+<label>Id Produit</label>
+<br>
+<input type="number" class="form-control" name="idProduit" [(ngModel)]="produit.idProduit" required #fn="ngModel" >
+<div class="alert alert-danger" *ngIf=" fn.invalid && fn.touched">ce champs est obligatoire</div> 
+<div *ngIf="fn.hasError('required')">ce champs est encore vide</div>
+</div>
+<br>
+<div>
+<label>Code</label>
+<br>
+<input type="text" class="form-control" name="code" [(ngModel)]="produit.code" required pattern = "[a-zA-Z-0-9]{8}" #fn1="ngModel"> 
+<div class="alert alert-danger" *ngIf="fn1.invalid && fn1.touched">ce champs est obligatoire</div> 
+<div *ngIf="fn1.hasError('required')">ce champs est encore vide</div>
+<div *ngIf="fn1.hasError('pattern')">ce champs conteint au min 8 caracteres</div>
+</div>
+<br>
+<div>
+<label>Libelle</label>
+<br>
+<input type="text" class="form-control" name="libelle" [(ngModel)]="produit.libelle" required minlength="3" #fn2="ngModel">
+<div class="alert alert-danger" *ngIf="fn2.invalid && fn2.touched">ce champs est obligatoire</div> 
+<div *ngIf="fn2.hasError('required')">ce champs est encore vide</div>
+<div *ngIf="fn2.hasError('minlength')">ce champs conteint au min 3 caracteres</div>
+ </div>
+<br>
+<div>
+    
+<label>Prix unitaire</label>
+<br>
+<input class="form-control" name="prixUnitaire" [(ngModel)]="produit.prixUnitaire" required pattern = "[1-9][0-9]*" #fn3="ngModel" > 
+<div class="alert alert-danger" *ngIf="fn3.invalid && fn3.touched">ce champs est obligatoire</div> 
+<div *ngIf="fn3.hasError('required')">ce champs est encore vide</div>
+<div *ngIf="fn3.hasError('pattern')">ce champs peut contenir que des chiffres</div>
+</div>
+<br>
+<div>
+<button class="btn btn-outline-warning" [disabled]="FAddProduit.invalid">Suivant</button>
+</div>
+</form>
+
+<br>
+<div [hidden]="FAddProduit.invalid">
+<div>
+<label>Id details produit</label>
+<br>
+<input type="text" class="form-control"name="idDetailProduit" [(ngModel)]="produit.idDetailProduit" required #fn4="ngModel" > 
+<div class="alert alert-danger" *ngIf=" fn4.invalid && fn4.touched">ce champs est obligatoire</div> 
+<div *ngIf="fn4.hasError('required')">ce champs est encore vide</div>
+</div>
+<br>
+<div>
+<label>Date création</label>
+<br>
+<input type="date" class="form-control" name="dateCreation" [(ngModel)]="produit.dateCreation" required #fn5="ngModel"> 
+<div class="alert alert-danger" *ngIf=" fn5.invalid && fn5.touched">ce champs est obligatoire</div> 
+<div *ngIf="fn5.hasError('required')">ce champs est encore vide</div>
+</div>
+</div>
+<br>
+
+<div [hidden]="FAddProduit.invalid || fn5.invalid ">
+<label>Date derniére modification</label>
+<br>
+<input type="date" class="form-control" name="dateDerniereModification" [(ngModel)]="produit.dateDerniereModification" required #fn6="ngModel"> 
+<div class="alert alert-danger" *ngIf="fn6.invalid && fn6.touched">ce champs est obligatoire</div> 
+<div *ngIf="fn6.hasError('required')">ce champs est encore vide</div>
+</div>
+<br>
+<div [hidden]="FAddProduit.invalid" >
+<label>Catégorie produit</label>
+<br>
+<select name="categorieProduit" [(ngModel)]="produit.categorieProduit" required #fn7="ngModel">
+    <option value="">--Please choose an option--</option>
+    <option value="Electromenager,">Electromenager</option>
+    <option value="Alimentaire">Alimentaire</option>
+    <option value="Quincaillerie">Quincaillerie</option>
+</select>
+<div class="alert alert-danger" *ngIf="fn7.invalid && fn7.touched">ce champs est obligatoire</div> 
+<div *ngIf="fn7.hasError('required')">ce champs est encore vide</div>
+</div>
+<br>
+<button class="btn btn-outline-success" [disabled]="FAddProduit.invalid || FAddProduitComplet.invalid " (click)="save()" >ajouter</button>
+</form>
+
+
+
+
