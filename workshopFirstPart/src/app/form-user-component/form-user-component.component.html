@@ -1,0 +1,81 @@
+
+<form  class="w-50 mx-auto"  #F="ngForm">
+     
+    <div class="form-group">
+        <h1>Create Account</h1>
+        <label>first name </label>
+        <br>
+        <input name="firstName" class="from-control col-md-3" [(ngModel)]="user.firstName" required minlength="3" #FN1="ngModel" pattern="[a-zA-Z]*">
+        <br>
+    <div class="alert alert-danger" *ngIf="FN1.invalid && FN1.touched">
+        <div *ngIf="FN1.hasError('minlength')"> this field should have at least 3 caracters</div>
+    <div *ngIf="FN1.hasError('required')">is empty </div>
+    <div *ngIf="FN1.hasError('pattern')">this field contains only letters</div>
+    is still incorrect ! 
+    </div>
+    <br>
+        <label>last name </label>
+        <br>
+        <input name="lasttName" class="from-control col-md-3" [(ngModel)]="user.lastName" required minlength="3" #fn="ngModel" pattern="[a-zA-Z]*">
+
+    <div class="alert alert-danger" *ngIf="fn.invalid && fn.touched" >
+        <div *ngIf="fn.hasError('minlength')">this field should have at least 3 caracters</div>
+        <div *ngIf="fn.hasError('required')">is empty </div>
+        <div *ngIf="fn.hasError('pattern')">this field contains only letters</div>
+
+        is still incorrect ! 
+    </div>
+    <br>
+    <label>birth date </label>
+        <br>
+    <input type="date"name="birthDate" class="from-control col-md-3" [(ngModel)]="user.birthDate" required #fn2="ngModel" >
+    <div class="alert alert-danger" *ngIf="fn2.invalid && fn.touched" >
+        <div *ngIf="fn2.hasError('required')">is empty </div>
+        is still incorrect ! 
+   </div>
+    <br>
+    
+    <label>email </label>
+        <br>
+    <input type="email"name="email" class="from-control col-md-3" [(ngModel)]="user.email" required #fn3="ngModel" pattern="^[a-zA-Z0-9._-]+@gmail.com">
+    <div class="alert alert-danger" *ngIf="fn3.invalid && fn3.touched" >
+        <div *ngIf="fn3.hasError('required')">is empty </div>
+        <div *ngIf="fn3.hasError('pattern')">please enter a valid email </div>
+
+        is still incorrect ! 
+    </div>
+    <br>
+    <label>Password</label>
+        <br>
+    <input type="password"name="password" class="from-control col-md-3" [(ngModel)]="user.password" required pattern="^[a-zA-Z0-9]{8,}?" #fn4="ngModel">
+    <div class="alert alert-danger" *ngIf="fn4.invalid && fn4.touched" >
+        <div *ngIf="fn4.hasError('required')">is empty </div>
+        <div *ngIf="fn4.hasError('pattern')">please enter a valid password when it should have at least 8 caracters </div>
+        is still incorrect ! 
+   </div>
+    <br>
+    <label>Profession</label>
+        <br>
+    <input type="text"name="profession" class="from-control col-md-3" [(ngModel)]="user.profession" required #fn5="ngModel" >
+    <div class="alert alert-danger" *ngIf="fn5.invalid && fn5.touched" >
+        <div *ngIf="fn5.hasError('required')">is empty </div>
+        is still incorrect ! 
+   </div>
+    <br>
+    <label>Customer Category</label>
+        <br>
+    <input type="text"name="accountCategory" class="from-control col-md-3" [(ngModel)]="user.accountCategory" required #fn6="ngModel" pattern="Customer">
+    <div class="alert alert-danger" *ngIf="fn6.invalid && fn6.touched" >
+        <div *ngIf="fn6.hasError('required')">is empty </div>
+        <div *ngIf="fn6.hasError('pattern')">is incorrect </div>
+        is still incorrect ! 
+   </div>
+    <br>
+    <br>
+    <button class="btn btn-outline-success" [disabled]="F.invalid" (click)="save()">save</button>
+    &nbsp;
+    <button class="btn btn-outline-warning" type="reset">reset</button>
+    <!--button class="btn btn-outline-warning" (click)="F.reset()">reset</button-->
+   </div> 
+</form>
+
